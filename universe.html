@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe Bedsitters Hostels - Comrades Accommodation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i> UNIVERSE BEDSITTERS
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#book"><i class="fas fa-calendar-check"></i> Book Semester</a></li>
+                <li><a href="#payments"><i class="fas fa-credit-card"></i> Payments</a></li>
+                <li><a href="#issues"><i class="fas fa-exclamation-triangle"></i> Report Issues</a></li>
+                <li><a href="#recommend"><i class="fas fa-star"></i> Recommendations</a></li>
+                <li><a href="#location"><i class="fas fa-map-marker-alt"></i> Location</a></li>
+            </ul>
+            <div class="user-menu">
+                <button class="login-btn" id="loginBtn">
+                    <i class="fas fa-user-graduate"></i> Comrade Login
+                </button>
+                <span class="user-name" id="userName"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="comrade-badge">FOR COMRADES ONLY</div>
+            <h1>UNIVERSE BEDSITTERS HOSTELS</h1>
+            <p class="tagline">Premium Semester Accommodation for Chuka University Comrades</p>
+            <div class="stats">
+                <div class="stat">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Comrades Only</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-door-closed"></i>
+                    <span>12 Rooms Total</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-wifi"></i>
+                    <span>Strong WiFi</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-tint"></i>
+                    <span>Clean Water 24/7</span>
+                </div>
+            </div>
+            <button class="cta-btn" onclick="scrollToSection('book')">
+                Book Semester Now <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Semester Booking Section -->
+    <section class="quick-booking" id="book">
+        <h2><i class="fas fa-calendar-alt"></i> Semester Booking</h2>
+        <div class="booking-form">
+            <div class="form-group">
+                <label><i class="fas fa-calendar"></i> Semester Start</label>
+                <input type="date" id="checkinDate" min="">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-calendar"></i> Semester End</label>
+                <input type="date" id="checkoutDate" min="">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-user-friends"></i> Accommodation Type</label>
+                <select id="roomType">
+                    <option value="single">Single Bedsitter - Ksh 15,000/semester</option>
+                    <option value="shared">With Roommate - Ksh 20,000/semester</option>
+                </select>
+            </div>
+            <button class="book-now-btn" onclick="startBooking()">
+                <i class="fas fa-check-circle"></i> Book Semester
+            </button>
+        </div>
+        <div class="semester-info">
+            <h4><i class="fas fa-info-circle"></i> Semester Terms</h4>
+            <p>• Single Bedsitter: Ksh 15,000 per semester</p>
+            <p>• With roommate: Ksh 20,000 per semester</p>
+            <p>• Limited to 12 rooms only - Book early!</p>
+            <p>• Payment required before semester starts</p>
+        </div>
+    </section>
+
+    <!-- Available Rooms -->
+    <section class="rooms-section" id="rooms">
+        <h2><i class="fas fa-university"></i> Our Comrades Hostel</h2>
+        <div class="rooms-container" id="roomsContainer">
+            <!-- Room loaded by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section" id="payments">
+        <div class="payment-container">
+            <div class="payment-info">
+                <h2><i class="fas fa-university"></i> Equity Bank Payments</h2>
+                <p>Pay your semester fee securely</p>
+                <div class="payment-methods">
+                    <div class="method active">
+                        <i class="fas fa-building"></i>
+                        <span>Equity Bank</span>
+                    </div>
+                    <div class="method">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>PayBill: 247247</span>
+                    </div>
+                    <div class="method">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Cash Deposit</span>
+                    </div>
+                </div>
+                <div class="paybill-display">
+                    <h4><i class="fas fa-info-circle"></i> Payment Instructions</h4>
+                    <p><strong>PayBill Number:</strong></p>
+                    <div class="paybill-number">247247</div>
+                    <p><strong>Account Name:</strong></p>
+                    <div class="paybill-account">UNIVERSE BEDSITTERS</div>
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        <i class="fas fa-phone"></i> After payment, WhatsApp receipt to: <strong>0716 102 910</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="payment-form">
+                <h3>Payment Details</h3>
+                <div class="payment-details">
+                    <div class="detail-item">
+                        <span>Accommodation:</span>
+                        <span id="paymentRoomType">Not Selected</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Semester Fee:</span>
+                        <span class="amount" id="paymentAmount">0.00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Your Registration:</span>
+                        <input type="text" id="regNumber" placeholder="CU/XXXX/XX" value="">
+                    </div>
+                </div>
+                <button class="pay-btn" onclick="processPayment()">
+                    <i class="fas fa-lock"></i> Confirm Payment
+                </button>
+                <div class="payment-status" id="paymentStatus"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Issues Section -->
+    <section class="issues-section" id="issues">
+        <h2><i class="fas fa-tools"></i> Report Issues - Immediate Response</h2>
+        <div class="issues-container">
+            <div class="common-issues">
+                <h3>Common Issues</h3>
+                <div class="issue-cards">
+                    <div class="issue-card" onclick="reportCommonIssue('WiFi Problem')">
+                        <i class="fas fa-wifi"></i>
+                        <span>WiFi Issue</span>
+                    </div>
+                    <div class="issue-card" onclick="reportCommonIssue('Water Problem')">
+                        <i class="fas fa-tint"></i>
+                        <span>Water Issue</span>
+                    </div>
+                    <div class="issue-card" onclick="reportCommonIssue('Electricity')">
+                        <i class="fas fa-bolt"></i>
+                        <span>Electricity</span>
+                    </div>
+                    <div class="issue-card" onclick="reportCommonIssue('Room Maintenance')">
+                        <i class="fas fa-home"></i>
+                        <span>Room Issue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="issue-form">
+                <h3>Report New Issue</h3>
+                <textarea id="issueDescription" placeholder="Describe your issue in detail..." rows="4"></textarea>
+                <select id="issueType">
+                    <option value="urgent">🚨 Urgent - Needs immediate attention</option>
+                    <option value="major">⚠️ Major - Fix within 24 hours</option>
+                    <option value="minor">🔧 Minor - Fix when possible</option>
+                </select>
+                <button class="report-btn" onclick="submitIssue()">
+                    <i class="fas fa-paper-plane"></i> Submit Report
+                </button>
+                <div class="issue-status" id="issueStatus"></div>
+            </div>
+        </div>
+
+        <!-- Reported Issues List -->
+        <div class="reported-issues">
+            <h3>Your Reported Issues</h3>
+            <div class="issues-list" id="issuesList">
+                <!-- Issues loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section" id="location">
+        <h2><i class="fas fa-map-marker-alt"></i> Our Location</h2>
+        <div class="location-info">
+            <div class="location-details">
+                <h3>Slaughter, Chuka University</h3>
+                <p><i class="fas fa-university"></i> Tharaka Nithi County</p>
+                <p><i class="fas fa-phone"></i> 0716 102 910 (Warden - Call/WhatsApp)</p>
+                <p><i class="fas fa-users"></i> For Chuka University Comrades Only</p>
+                <p><i class="fas fa-door-closed"></i> 12 Rooms Available</p>
+                <p><i class="fas fa-walking"></i> Walking distance to campus</p>
+            </div>
+            <div class="location-features">
+                <h4>Hostel Features:</h4>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-wifi"></i>
+                        <span>Strong WiFi throughout semester</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-tint"></i>
+                        <span>Clean water flow 24/7</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Reliable electricity</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-home"></i>
+                        <span>Rooms with ceilings & tiles</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure for comrades</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-book"></i>
+                        <span>Quiet study environment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section class="recommend-section" id="recommend">
+        <h2><i class="fas fa-star"></i> Comrades Recommendations</h2>
+        <div class="recommend-container">
+            <div class="add-recommendation">
+                <h3>Share Your Experience</h3>
+                <div class="rating">
+                    <span>Rate your stay:</span>
+                    <div class="stars">
+                        <i class="fas fa-star" onclick="rate(1)"></i>
+                        <i class="fas fa-star" onclick="rate(2)"></i>
+                        <i class="fas fa-star" onclick="rate(3)"></i>
+                        <i class="fas fa-star" onclick="rate(4)"></i>
+                        <i class="fas fa-star" onclick="rate(5)"></i>
+                    </div>
+                </div>
+                <textarea id="reviewText" placeholder="Write your review here..." rows="3"></textarea>
+                <button class="submit-review" onclick="submitReview()">
+                    <i class="fas fa-share"></i> Submit Review
+                </button>
+            </div>
+
+            <div class="recommendations-list">
+                <h3>Recent Reviews from Comrades</h3>
+                <div class="reviews" id="reviewsList">
+                    <!-- Reviews loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminLoginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-user-shield"></i> Admin Login</h2>
+            <div class="modal-form">
+                <input type="text" id="adminUsername" placeholder="Admin Username">
+                <input type="password" id="adminPassword" placeholder="Admin Password">
+                <button onclick="adminLogin()">Login as Admin</button>
+                <p class="demo-credentials">
+                    Admin Demo: Username: <strong>admin</strong> | Password: <strong>admin123</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div class="modal" id="adminPanelModal">
+        <div class="modal-content wide-modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-user-shield"></i> Admin Control Panel</h2>
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="openAdminTab('dashboard')">Dashboard</button>
+                <button class="tab-btn" onclick="openAdminTab('bookings')">Bookings</button>
+                <button class="tab-btn" onclick="openAdminTab('payments')">Payments</button>
+                <button class="tab-btn" onclick="openAdminTab('issues')">Issues</button>
+                <button class="tab-btn" onclick="openAdminTab('rooms')">Rooms</button>
+                <button class="tab-btn" onclick="openAdminTab('users')">Comrades</button>
+                <button class="tab-btn logout-btn" onclick="adminLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <div class="tab-content active" id="dashboardTab">
+                <h3>Admin Dashboard</h3>
+                <div class="admin-stats">
+                    <div class="admin-stat">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <span class="stat-value" id="totalComrades">0</span>
+                            <span class="stat-label">Total Comrades</span>
+                        </div>
+                    </div>
+                    <div class="admin-stat">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <span class="stat-value" id="totalBookings">0</span>
+                            <span class="stat-label">Active Bookings</span>
+                        </div>
+                    </div>
+                    <div class="admin-stat">
+                        <i class="fas fa-money-check-alt"></i>
+                        <div>
+                            <span class="stat-value" id="totalRevenue">0</span>
+                            <span class="stat-label">Revenue (Ksh)</span>
+                        </div>
+                    </div>
+                    <div class="admin-stat">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <span class="stat-value" id="pendingIssues">0</span>
+                            <span class="stat-label">Pending Issues</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h4>Quick Actions</h4>
+                    <button onclick="openAdminTab('bookings')">
+                        <i class="fas fa-eye"></i> View All Bookings
+                    </button>
+                    <button onclick="openAdminTab('issues')">
+                        <i class="fas fa-tools"></i> Manage Issues
+                    </button>
+                    <button onclick="markAllIssuesResolved()">
+                        <i class="fas fa-check"></i> Mark All Issues Resolved
+                    </button>
+                    <button onclick="exportData()">
+                        <i class="fas fa-download"></i> Export Data
+                    </button>
+                </div>
+            </div>
+
+            <div class="tab-content" id="bookingsTab">
+                <h3>All Semester Bookings</h3>
+                <div class="search-box">
+                    <input type="text" id="searchBooking" placeholder="Search by registration number..."
+                        onkeyup="searchBookings()">
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Comrade</th>
+                                <th>Registration</th>
+                                <th>Room Type</th>
+                                <th>Amount</th>
+                                <th>Dates</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTable">
+                            <!-- Bookings loaded by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="paymentsTab">
+                <h3>Payment Records</h3>
+                <div class="payment-summary">
+                    <div class="summary-item">
+                        <span>Total Received:</span>
+                        <span class="amount">Ksh <span id="totalPayments">0</span></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Pending Payments:</span>
+                        <span class="amount pending">Ksh <span id="pendingPayments">0</span></span>
+                    </div>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Receipt #</th>
+                                <th>Comrade</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>Verify</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTable">
+                            <!-- Payments loaded by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="issuesTab">
+                <h3>Reported Issues Management</h3>
+                <div class="filter-issues">
+                    <select id="issueFilter" onchange="filterIssues()">
+                        <option value="all">All Issues</option>
+                        <option value="pending">Pending</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ticket #</th>
+                                <th>Comrade</th>
+                                <th>Issue</th>
+                                <th>Priority</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="issuesTable">
+                            <!-- Issues loaded by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="roomsTab">
+                <h3>Room Management</h3>
+                <div class="room-management">
+                    <div class="room-stats">
+                        <div class="room-stat">
+                            <span class="room-count">12</span>
+                            <span class="room-label">Total Rooms</span>
+                        </div>
+                        <div class="room-stat">
+                            <span class="room-count" id="occupiedRooms">0</span>
+                            <span class="room-label">Occupied</span>
+                        </div>
+                        <div class="room-stat">
+                            <span class="room-count" id="availableRooms">12</span>
+                            <span class="room-label">Available</span>
+                        </div>
+                    </div>
+
+                    <div class="room-pricing">
+                        <h4>Set Semester Prices</h4>
+                        <div class="price-control">
+                            <label>Single Bedsitter:</label>
+                            <div class="price-input">
+                                <span>Ksh</span>
+                                <input type="number" id="singlePrice" value="15000" min="10000" max="30000">
+                                <button onclick="updatePrice('single')">Update</button>
+                            </div>
+                        </div>
+                        <div class="price-control">
+                            <label>With Roommate:</label>
+                            <div class="price-input">
+                                <span>Ksh</span>
+                                <input type="number" id="sharedPrice" value="20000" min="15000" max="35000">
+                                <button onclick="updatePrice('shared')">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="usersTab">
+                <h3>Registered Comrades</h3>
+                <div class="user-management">
+                    <div class="search-box">
+                        <input type="text" id="searchUser" placeholder="Search comrades..." onkeyup="searchUsers()">
+                    </div>
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Registration</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Bookings</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTable">
+                                <!-- Users loaded by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fas fa-graduation-cap"></i> Universe Bedsitters</h4>
+                <p>Premium accommodation for Chuka University comrades since 2018</p>
+                <p><i class="fas fa-exclamation-circle"></i> Strictly for comrades only</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Warden</h4>
+                <p><i class="fas fa-phone"></i> 0716 102 910 (Call/WhatsApp)</p>
+                <p><i class="fas fa-map-marker-alt"></i> Slaughter, Chuka University</p>
+                <p><i class="fas fa-map-pin"></i> Tharaka Nithi County</p>
+                <p><i class="fas fa-door-closed"></i> 12 Rooms Available</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#book">Book Semester</a>
+                <a href="#payments">Make Payment</a>
+                <a href="#issues">Report Issue</a>
+                <a href="#recommend">Write Review</a>
+                <a href="#location">View Location</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Universe Bedsitters Hostels. For Chuka University Comrades Only.</p>
+            <p class="demo-note">Demo System - All transactions are simulated</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-user-graduate"></i> Comrade Login</h2>
+            <div class="modal-form">
+                <input type="text" id="studentId" placeholder="Registration Number (e.g., CU/001/21)" maxlength="15">
+                <input type="password" id="password" placeholder="Password (any for demo)">
+                <button onclick="login()">Login as Comrade</button>
+                <p class="demo-credentials">
+                    Demo: Use registration number <strong>CU/001/21</strong> with any password
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-calendar-check"></i> Confirm Semester Booking</h2>
+            <div class="booking-summary" id="bookingSummary">
+                <!-- Booking details loaded here -->
+            </div>
+            <button class="confirm-btn" onclick="confirmBooking()">
+                <i class="fas fa-check"></i> Confirm Semester Booking
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
